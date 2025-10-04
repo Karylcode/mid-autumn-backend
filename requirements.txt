@@ -1,0 +1,3 @@
+# This app uses only Python standard library.
+# Keep this file so Render can run: pip install -r requirements.txt
+# No third-party packages are required.
