@@ -1,8 +1,100 @@
 import json
 import os
+import datetime
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-DATA_FILE = os.path.join(os.path.dirname(__file__), 'leaderboard.json')
+BASE_DIR = os.path.dirname(__file__)
+DATA_FILE = os.path.join(BASE_DIR, 'leaderboard.json')
+BACKUPS_DIR = os.path.join(BASE_DIR, 'Server data', 'backups')
+
+def _items_len(obj):
+    if isinstance(obj, dict):
+        v = obj.get('items')
+        return len(v) if isinstance(v, list) else 0
+    if isinstance(obj, list):
+        return len(obj)
+    return 0
+
+def _ensure_backups_dir():
+    try:
+        os.makedirs(BACKUPS_DIR, exist_ok=True)
+    except Exception:
+        pass
+
+def _load_json(path):
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+def _save_backup_snapshot(items):
+    """Write latest.json and a timestamped snapshot under backups, update manifest."""
+    _ensure_backups_dir()
+    payload = {'items': items}
+    # latest.json
+    latest_path = os.path.join(BACKUPS_DIR, 'latest.json')
+    try:
+        with open(latest_path, 'w', encoding='utf-8') as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+    # timestamped snapshot
+    ts = datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
+    snap_name = f'leaderboard-{ts}.json'
+    snap_path = os.path.join(BACKUPS_DIR, snap_name)
+    try:
+        with open(snap_path, 'w', encoding='utf-8') as f:
+            json.dump(payload, f, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+    # manifest
+    manifest_path = os.path.join(BACKUPS_DIR, 'manifest.json')
+    manifest = []
+    try:
+        if os.path.exists(manifest_path):
+            with open(manifest_path, 'r', encoding='utf-8') as mf:
+                manifest = json.load(mf) or []
+    except Exception:
+        manifest = []
+    try:
+        entry = {'timestamp': ts, 'file': snap_name, 'count': len(items)}
+        manifest.append(entry)
+        with open(manifest_path, 'w', encoding='utf-8') as mf:
+            json.dump(manifest, mf, ensure_ascii=False, indent=2)
+    except Exception:
+        pass
+
+def _find_best_local_snapshot():
+    """Return best items list from local backups (latest.json preferred, otherwise max-count among known patterns)."""
+    _ensure_backups_dir()
+    # 1) latest.json
+    latest = _load_json(os.path.join(BACKUPS_DIR, 'latest.json'))
+    if latest:
+        items = latest.get('items') if isinstance(latest, dict) else (latest if isinstance(latest, list) else [])
+        if isinstance(items, list) and len(items) > 0:
+            return items
+    # 2) choose max-count from patterns
+    patterns = ['backend-live-', 'data-live-', 'leaderboard-']
+    best_items = []
+    max_count = -1
+    try:
+        for name in sorted(os.listdir(BACKUPS_DIR)):
+            if not name.endswith('.json'):
+                continue
+            if not any(name.startswith(p) for p in patterns):
+                continue
+            data = _load_json(os.path.join(BACKUPS_DIR, name))
+            if data is None:
+                continue
+            items = data.get('items') if isinstance(data, dict) else (data if isinstance(data, list) else [])
+            cnt = len(items) if isinstance(items, list) else 0
+            if cnt > max_count:
+                max_count = cnt
+                best_items = items
+    except Exception:
+        pass
+    return best_items
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -14,8 +106,14 @@ def load_data():
         return []
 
 def save_data(data):
+    # persist to main data file
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    # also write backups (latest + timestamped + manifest)
+    try:
+        _save_backup_snapshot(data if isinstance(data, list) else [])
+    except Exception:
+        pass
 
 class LeaderboardHandler(BaseHTTPRequestHandler):
     def _set_cors(self):
@@ -114,7 +212,24 @@ def run_server():
     httpd.serve_forever()
 
 if __name__ == '__main__':
-    # 建立資料檔
+    # 建立資料檔或從備份自動還原
+    need_restore = False
     if not os.path.exists(DATA_FILE):
-        save_data([])
+        need_restore = True
+    else:
+        try:
+            cur = load_data()
+            if not isinstance(cur, list) or len(cur) == 0:
+                need_restore = True
+        except Exception:
+            need_restore = True
+
+    if need_restore:
+        restored = _find_best_local_snapshot()
+        if isinstance(restored, list) and len(restored) > 0:
+            print(f"Auto-restore from local backups: {len(restored)} items")
+            save_data(restored)
+        else:
+            print("No valid local backup found. Initializing empty dataset.")
+            save_data([])
     run_server()

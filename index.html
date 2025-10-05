@@ -254,7 +254,7 @@
     <div id="boardModal" class="modal" aria-hidden="true" role="dialog" aria-label="全球排行榜">
       <div class="modal-content">
         <div class="modal-header">
-          <div style="font-weight:700;">全球排行榜（最高分）</div>
+          <div style="font-weight:700;">排行榜（最高分）</div>
           <div style="display:flex;align-items:center;gap:8px;">
             <div style="font-size:12px;color:var(--muted);">每10秒自動刷新</div>
             <button id="boardClose" class="close-btn" title="關閉">返回</button>
@@ -291,7 +291,6 @@
 
     <div class="panel hint">
       提示：用手指或滑鼠在畫布中畫出一個圓，放開即評分。<br/>
-      評分依據包含圓度（越接近真圓越高）、閉合度（首尾越接近越高）、線條平滑度（抖動越少越高）。
     </div>
 
     <div class="panel" id="boardPanelBottom" style="display:none;">
@@ -310,8 +309,6 @@
         <tbody id="leaderboardBodyBottom"></tbody>
       </table>
     </div>
-
-    <div class="footer">跨平台支援：手機/平板/桌面皆可操作。</div>
   </div>
 
   <script>
@@ -333,7 +330,7 @@
     const DISCORD_CLIENT_ID = '1423972212196511816';
     const REDIRECT_URI = window.location.origin + '/';
     const OAUTH_SCOPE = 'identify';
-    // Leaderboard API 設定（可在部署環境覆寫或走相對路徑 /api）
+    // Leaderboard API 設定（本機用 localhost，部署可用 ?api= 覆寫；預設為 Render，支援 local 別名與失敗時回退）
     let API_BASE = 'http://localhost:8001/api';
     (() => {
       const isLocal = ['localhost','127.0.0.1'].includes(location.hostname);
@@ -341,9 +338,9 @@
       if (isLocal) {
         API_BASE = 'http://localhost:8001/api';
       } else if (override) {
-        API_BASE = override;
+        API_BASE = (override === 'local') ? 'http://localhost:8001/api' : override;
       } else {
-        API_BASE = `${location.origin}/api`;
+        API_BASE = 'https://mid-autumn-data.onrender.com/api';
       }
     })();
     let currentUser = null;
@@ -485,6 +482,20 @@
         renderLeaderboard(data.items || []);
       } catch (err) {
         console.error(err);
+        // 失敗時回退至本機 API（若目前不是本機）
+        if (!API_BASE.startsWith('http://localhost:8001')) {
+          try {
+            const fallback = 'http://localhost:8001/api';
+            const res2 = await fetch(`${fallback}/leaderboard`);
+            if (res2.ok) {
+              const data2 = await res2.json();
+              API_BASE = fallback; // 後續請求改用本機
+              renderLeaderboard(data2.items || []);
+            }
+          } catch (err2) {
+            console.error('fallback 失敗', err2);
+          }
+        }
       }
     }
 
@@ -515,10 +526,28 @@
           body: JSON.stringify({ user_id: currentUser.id, name: currentUser.name, score: Number(score), avatar: currentUser.avatar })
         });
         if (!res.ok) throw new Error('提交分數失敗');
-        const data = await res.json();
+        await res.json();
         fetchLeaderboard();
       } catch (err) {
         console.error(err);
+        // 失敗時回退至本機 API（若目前不是本機）
+        if (!API_BASE.startsWith('http://localhost:8001')) {
+          try {
+            const fallback = 'http://localhost:8001/api';
+            const res2 = await fetch(`${fallback}/leaderboard/submit`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ user_id: currentUser.id, name: currentUser.name, score: Number(score), avatar: currentUser.avatar })
+            });
+            if (res2.ok) {
+              API_BASE = fallback;
+              await res2.json();
+              fetchLeaderboard();
+            }
+          } catch (err2) {
+            console.error('fallback 提交失敗', err2);
+          }
+        }
       }
     }
 
