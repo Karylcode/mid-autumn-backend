@@ -10,6 +10,7 @@ import urllib.error
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 BASE_DIR = os.path.dirname(__file__)
+PROJECT_DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 def _is_writable_dir(path):
     try:
@@ -23,12 +24,13 @@ def _is_writable_dir(path):
         return False
 
 def _resolve_data_dir():
-    # Prefer explicit env vars; fall back to Render persistent disk (/data) if available; else BASE_DIR
+    # Prefer explicit env vars; then project-local data dir; then Render persistent disk (/data); else BASE_DIR
     candidates = [
         os.environ.get('PERSIST_DIR') or '',
         os.environ.get('DATA_DIR') or '',
         os.environ.get('RENDER_DATA_DIR') or '',
-        '/data',  # Render persistent disk default path if provisioned
+        PROJECT_DATA_DIR,
+        '/data',  # Render persistent disk default path if provisioned (on Windows this is C:\data)
         BASE_DIR,
     ]
     for p in candidates:
@@ -138,6 +140,43 @@ def _find_best_local_snapshot():
     except Exception:
         pass
     return best_items
+
+def _load_newest_from_project_data():
+    """Load newest JSON from project data folder (BASE_DIR/data), return items list if valid."""
+    pd = PROJECT_DATA_DIR
+    if not os.path.isdir(pd):
+        return []
+    try:
+        latest_file = None
+        latest_mtime = -1.0
+        for name in os.listdir(pd):
+            if not name.lower().endswith('.json'):
+                continue
+            path = os.path.join(pd, name)
+            try:
+                m = os.path.getmtime(path)
+                if m > latest_mtime:
+                    latest_mtime = m
+                    latest_file = path
+            except Exception:
+                continue
+        # fallback to data/leaderboard.json if no other json found
+        if latest_file is None:
+            fallback = os.path.join(pd, 'leaderboard.json')
+            if os.path.exists(fallback):
+                latest_file = fallback
+        if latest_file and os.path.exists(latest_file):
+            data = _load_json(latest_file)
+            if isinstance(data, dict):
+                items = data.get('items')
+            elif isinstance(data, list):
+                items = data
+            else:
+                items = []
+            return items if isinstance(items, list) else []
+    except Exception:
+        return []
+    return []
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -404,7 +443,10 @@ if __name__ == '__main__':
             need_restore = True
 
     if need_restore:
-        restored = _find_best_local_snapshot()
+        # Prefer newest file from project data directory, then fall back to local backups
+        restored = _load_newest_from_project_data()
+        if not (isinstance(restored, list) and len(restored) > 0):
+            restored = _find_best_local_snapshot()
         if isinstance(restored, list) and len(restored) > 0:
             print(f"Auto-restore from local backups: {len(restored)} items")
             save_data(restored)

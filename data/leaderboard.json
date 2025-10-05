@@ -1,188 +1,186 @@
-{
-  "items": [
-    {
-      "user_id": "980477539510284309",
-      "name": "墨璃",
-      "score": 90.0836881785434,
-      "avatar": "https://cdn.discordapp.com/avatars/980477539510284309/d8365921c08693763aa73e5c5181df8b.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
-      "rank": 1
-    },
-    {
-      "user_id": "577488032345620490",
-      "name": "IceMax",
-      "score": 83.5317550349285,
-      "avatar": "https://cdn.discordapp.com/avatars/577488032345620490/d773ac63b953b59a6dfad551dc6c6a5d.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
-      "rank": 2
-    },
-    {
-      "user_id": "1111957208465416232",
-      "name": "剩飯處理騎士團",
-      "score": 65.2734472742155,
-      "avatar": "https://cdn.discordapp.com/avatars/1111957208465416232/1a70cbb9125e6b706bc82e1dcd20d2e9.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 05:05:28 GMT",
-      "rank": 3
-    },
-    {
-      "user_id": "911786784822808636",
-      "name": "LaiREN",
-      "score": 65.0648287970268,
-      "avatar": "https://cdn.discordapp.com/avatars/911786784822808636/05b3de2f9ea6316cd1344f410b61b53a.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
-      "rank": 4
-    },
-    {
-      "user_id": "676786429677797377",
-      "name": "beepcat",
-      "score": 64.1493262111562,
-      "avatar": "https://cdn.discordapp.com/avatars/676786429677797377/88f7c53d522ccc519294f0ea1ea16386.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
-      "rank": 5
-    },
-    {
-      "user_id": "743288101010538566",
-      "name": "𝒿𝒸𝓊ii",
-      "score": 63.3333708929504,
-      "avatar": "https://cdn.discordapp.com/avatars/743288101010538566/536fe75e7016bdc0411f77781ef8f07c.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
-      "rank": 6
-    },
-    {
-      "user_id": "1006235209492074596",
-      "name": "澈くん(=^‥^=)",
-      "score": 63.0011272163075,
-      "avatar": "https://cdn.discordapp.com/avatars/1006235209492074596/80686852c98a0caa58bf2f2d48776340.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 07:24:37 GMT",
-      "rank": 7
-    },
-    {
-      "user_id": "424247424987693056",
-      "name": "鯊盯魚",
-      "score": 62.7814953218169,
-      "avatar": "https://cdn.discordapp.com/avatars/424247424987693056/a827fe7ca3b1942f74511487580c56ed.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
-      "rank": 8
-    },
-    {
-      "user_id": "1319623137918189578",
-      "name": "Chenchen2",
-      "score": 62.6979666498968,
-      "avatar": "https://cdn.discordapp.com/avatars/1319623137918189578/ab478768aa31be72cbe915c636bd1836.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
-      "rank": 9
-    },
-    {
-      "user_id": "276236296198946817",
-      "name": "Keride",
-      "score": 61.7157885897555,
-      "avatar": "https://cdn.discordapp.com/avatars/276236296198946817/d42b05a80c8808dba219c8525c88cdf5.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
-      "rank": 10
-    },
-    {
-      "user_id": "691593633681637387",
-      "name": "東東owo",
-      "score": 61.2299335444448,
-      "avatar": "https://cdn.discordapp.com/avatars/691593633681637387/7883920be96c4b9602ece76172a74507.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
-      "rank": 11
-    },
-    {
-      "user_id": "326758058640408589",
-      "name": "小雪",
-      "score": 61.1419112438702,
-      "avatar": "https://cdn.discordapp.com/avatars/326758058640408589/ebe5979f7d94ffbc8f1e265df2d720a9.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
-      "rank": 12
-    },
-    {
-      "user_id": "728074814241243146",
-      "name": "月漓.",
-      "score": 60.6375882988576,
-      "avatar": "https://cdn.discordapp.com/avatars/728074814241243146/1c3e138dcb0b00896dc86f03fdb4e6fa.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
-      "rank": 13
-    },
-    {
-      "user_id": "879936389762928671",
-      "name": "米羔",
-      "score": 60.6031839205246,
-      "avatar": "https://cdn.discordapp.com/avatars/879936389762928671/f2b1d1e72c43ffc2b906ef02ceccc579.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
-      "rank": 14
-    },
-    {
-      "user_id": "465903901108076544",
-      "name": "Crow",
-      "score": 60.1394096471055,
-      "avatar": "https://cdn.discordapp.com/avatars/465903901108076544/bdaae42aa9fb25386ee8eac0f9a915f5.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 03:17:55 GMT",
-      "rank": 15
-    },
-    {
-      "user_id": "371905254263881729",
-      "name": "厄卡倫",
-      "score": 59.7543328236939,
-      "avatar": "https://cdn.discordapp.com/avatars/371905254263881729/42bc1ce4caad67b20c2b16168e6efe8e.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
-      "rank": 16
-    },
-    {
-      "user_id": "796688752118202368",
-      "name": "𝐊𝐚𝐫𝐲𝐥 /ᐠ - ˕ -マ",
-      "score": 59.1552867894656,
-      "avatar": "https://cdn.discordapp.com/avatars/796688752118202368/919cb441d401fc9778e05b611a790874.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 04:01:02 GMT",
-      "rank": 17
-    },
-    {
-      "user_id": "1131885395123126334",
-      "name": "藥師",
-      "score": 58.9180757720052,
-      "avatar": "https://cdn.discordapp.com/avatars/1131885395123126334/62c97f3c2e992d8b54647b84543f069e.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
-      "rank": 18
-    },
-    {
-      "user_id": "1289879548464463927",
-      "name": "error404",
-      "score": 58.3396000266261,
-      "avatar": "https://cdn.discordapp.com/avatars/1289879548464463927/11a677cdb99b051dd3edc5387e1f2be2.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:35 GMT",
-      "rank": 19
-    },
-    {
-      "user_id": "857353445698437180",
-      "name": "生的肉排",
-      "score": 57.161760833959,
-      "avatar": "https://cdn.discordapp.com/avatars/857353445698437180/5ddc94db150ad1b56588403a210f1aba.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 10:22:12 GMT",
-      "rank": 20
-    },
-    {
-      "user_id": "232452978282332171",
-      "name": "久希ひさき",
-      "score": 56.5471986095366,
-      "avatar": "https://cdn.discordapp.com/avatars/232452978282332171/ec90c334082dc793e3df5c59a25048b9.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 04:09:44 GMT",
-      "rank": 21
-    },
-    {
-      "user_id": "606075676474212362",
-      "name": "薩波Sabo",
-      "score": 50.5330966930214,
-      "avatar": "https://cdn.discordapp.com/avatars/606075676474212362/d06072f193ef3ce1840b582bf1dd3d92.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 00:32:35 GMT",
-      "rank": 22
-    },
-    {
-      "user_id": "617297543151353866",
-      "name": "Monika",
-      "score": 48.2025888523938,
-      "avatar": "https://cdn.discordapp.com/avatars/617297543151353866/2a06c75391810b67de75ea851313e6af.png?size=64",
-      "updated_at": "Sun, 05 Oct 2025 04:08:32 GMT",
-      "rank": 23
-    }
-  ]
-}
+[
+  {
+    "user_id": "980477539510284309",
+    "name": "墨璃",
+    "score": 90.0836881785434,
+    "avatar": "https://cdn.discordapp.com/avatars/980477539510284309/d8365921c08693763aa73e5c5181df8b.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
+    "rank": 1
+  },
+  {
+    "user_id": "577488032345620490",
+    "name": "IceMax",
+    "score": 83.5317550349285,
+    "avatar": "https://cdn.discordapp.com/avatars/577488032345620490/d773ac63b953b59a6dfad551dc6c6a5d.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
+    "rank": 2
+  },
+  {
+    "user_id": "1111957208465416232",
+    "name": "剩飯處理騎士團",
+    "score": 65.2734472742155,
+    "avatar": "https://cdn.discordapp.com/avatars/1111957208465416232/1a70cbb9125e6b706bc82e1dcd20d2e9.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 05:05:28 GMT",
+    "rank": 3
+  },
+  {
+    "user_id": "911786784822808636",
+    "name": "LaiREN",
+    "score": 65.0648287970268,
+    "avatar": "https://cdn.discordapp.com/avatars/911786784822808636/05b3de2f9ea6316cd1344f410b61b53a.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
+    "rank": 4
+  },
+  {
+    "user_id": "676786429677797377",
+    "name": "beepcat",
+    "score": 64.1493262111562,
+    "avatar": "https://cdn.discordapp.com/avatars/676786429677797377/88f7c53d522ccc519294f0ea1ea16386.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
+    "rank": 5
+  },
+  {
+    "user_id": "743288101010538566",
+    "name": "𝒿𝒸𝓊ii",
+    "score": 63.3333708929504,
+    "avatar": "https://cdn.discordapp.com/avatars/743288101010538566/536fe75e7016bdc0411f77781ef8f07c.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:32 GMT",
+    "rank": 6
+  },
+  {
+    "user_id": "1006235209492074596",
+    "name": "澈くん(=^‥^=)",
+    "score": 63.0011272163075,
+    "avatar": "https://cdn.discordapp.com/avatars/1006235209492074596/80686852c98a0caa58bf2f2d48776340.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 07:24:37 GMT",
+    "rank": 7
+  },
+  {
+    "user_id": "424247424987693056",
+    "name": "鯊盯魚",
+    "score": 62.7814953218169,
+    "avatar": "https://cdn.discordapp.com/avatars/424247424987693056/a827fe7ca3b1942f74511487580c56ed.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
+    "rank": 8
+  },
+  {
+    "user_id": "1319623137918189578",
+    "name": "Chenchen2",
+    "score": 62.6979666498968,
+    "avatar": "https://cdn.discordapp.com/avatars/1319623137918189578/ab478768aa31be72cbe915c636bd1836.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
+    "rank": 9
+  },
+  {
+    "user_id": "276236296198946817",
+    "name": "Keride",
+    "score": 61.7157885897555,
+    "avatar": "https://cdn.discordapp.com/avatars/276236296198946817/d42b05a80c8808dba219c8525c88cdf5.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
+    "rank": 10
+  },
+  {
+    "user_id": "691593633681637387",
+    "name": "東東owo",
+    "score": 61.2299335444448,
+    "avatar": "https://cdn.discordapp.com/avatars/691593633681637387/7883920be96c4b9602ece76172a74507.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:33 GMT",
+    "rank": 11
+  },
+  {
+    "user_id": "326758058640408589",
+    "name": "小雪",
+    "score": 61.1419112438702,
+    "avatar": "https://cdn.discordapp.com/avatars/326758058640408589/ebe5979f7d94ffbc8f1e265df2d720a9.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
+    "rank": 12
+  },
+  {
+    "user_id": "728074814241243146",
+    "name": "月漓.",
+    "score": 60.6375882988576,
+    "avatar": "https://cdn.discordapp.com/avatars/728074814241243146/1c3e138dcb0b00896dc86f03fdb4e6fa.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
+    "rank": 13
+  },
+  {
+    "user_id": "879936389762928671",
+    "name": "米羔",
+    "score": 60.6031839205246,
+    "avatar": "https://cdn.discordapp.com/avatars/879936389762928671/f2b1d1e72c43ffc2b906ef02ceccc579.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
+    "rank": 14
+  },
+  {
+    "user_id": "465903901108076544",
+    "name": "Crow",
+    "score": 60.1394096471055,
+    "avatar": "https://cdn.discordapp.com/avatars/465903901108076544/bdaae42aa9fb25386ee8eac0f9a915f5.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 03:17:55 GMT",
+    "rank": 15
+  },
+  {
+    "user_id": "371905254263881729",
+    "name": "厄卡倫",
+    "score": 59.7543328236939,
+    "avatar": "https://cdn.discordapp.com/avatars/371905254263881729/42bc1ce4caad67b20c2b16168e6efe8e.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
+    "rank": 16
+  },
+  {
+    "user_id": "796688752118202368",
+    "name": "𝐊𝐚𝐫𝐲𝐥 /ᐠ - ˕ -マ",
+    "score": 59.1552867894656,
+    "avatar": "https://cdn.discordapp.com/avatars/796688752118202368/919cb441d401fc9778e05b611a790874.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 04:01:02 GMT",
+    "rank": 17
+  },
+  {
+    "user_id": "1131885395123126334",
+    "name": "藥師",
+    "score": 58.9180757720052,
+    "avatar": "https://cdn.discordapp.com/avatars/1131885395123126334/62c97f3c2e992d8b54647b84543f069e.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:34 GMT",
+    "rank": 18
+  },
+  {
+    "user_id": "1289879548464463927",
+    "name": "error404",
+    "score": 58.3396000266261,
+    "avatar": "https://cdn.discordapp.com/avatars/1289879548464463927/11a677cdb99b051dd3edc5387e1f2be2.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:35 GMT",
+    "rank": 19
+  },
+  {
+    "user_id": "857353445698437180",
+    "name": "生的肉排",
+    "score": 57.161760833959,
+    "avatar": "https://cdn.discordapp.com/avatars/857353445698437180/5ddc94db150ad1b56588403a210f1aba.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 10:22:12 GMT",
+    "rank": 20
+  },
+  {
+    "user_id": "232452978282332171",
+    "name": "久希ひさき",
+    "score": 56.5471986095366,
+    "avatar": "https://cdn.discordapp.com/avatars/232452978282332171/ec90c334082dc793e3df5c59a25048b9.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 04:09:44 GMT",
+    "rank": 21
+  },
+  {
+    "user_id": "606075676474212362",
+    "name": "薩波Sabo",
+    "score": 50.5330966930214,
+    "avatar": "https://cdn.discordapp.com/avatars/606075676474212362/d06072f193ef3ce1840b582bf1dd3d92.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 00:32:35 GMT",
+    "rank": 22
+  },
+  {
+    "user_id": "617297543151353866",
+    "name": "Monika",
+    "score": 48.2025888523938,
+    "avatar": "https://cdn.discordapp.com/avatars/617297543151353866/2a06c75391810b67de75ea851313e6af.png?size=64",
+    "updated_at": "Sun, 05 Oct 2025 04:08:32 GMT",
+    "rank": 23
+  }
+]
