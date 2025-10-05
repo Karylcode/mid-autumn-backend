@@ -330,17 +330,23 @@
     const DISCORD_CLIENT_ID = '1423972212196511816';
     const REDIRECT_URI = window.location.origin + '/';
     const OAUTH_SCOPE = 'identify';
-    // Leaderboard API 設定（本機用 localhost，部署可用 ?api= 覆寫；預設為 Render，支援 local 別名與失敗時回退）
-    let API_BASE = 'http://localhost:8001/api';
+    // Leaderboard API 設定
+    // 預設指向 Render 後端；可用 ?api= 覆寫（支援 local 與 render 別名），在本機開發時也可明確指定。
+    let API_BASE = 'https://mid-autumn-backend.onrender.com/api';
     (() => {
-      const isLocal = ['localhost','127.0.0.1'].includes(location.hostname);
+      const isLocalHost = ['localhost','127.0.0.1'].includes(location.hostname);
       const override = new URLSearchParams(location.search).get('api');
-      if (isLocal) {
+      if (override) {
+        if (override === 'local') {
+          API_BASE = 'http://localhost:8001/api';
+        } else if (override === 'render') {
+          API_BASE = 'https://mid-autumn-backend.onrender.com/api';
+        } else {
+          API_BASE = override; // 允許自定義完整 URL
+        }
+      } else if (isLocalHost) {
+        // 本機預設仍可走本地端（若本地服務未開啟，程式會在 fetch 失敗時回退）
         API_BASE = 'http://localhost:8001/api';
-      } else if (override) {
-        API_BASE = (override === 'local') ? 'http://localhost:8001/api' : override;
-      } else {
-        API_BASE = 'https://mid-autumn-data.onrender.com/api';
       }
     })();
     let currentUser = null;

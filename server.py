@@ -310,7 +310,7 @@ class LeaderboardHandler(BaseHTTPRequestHandler):
     def _set_cors(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Token')
 
     def do_OPTIONS(self):
         self.send_response(204)
@@ -360,7 +360,75 @@ class LeaderboardHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_POST(self):
-        if self.path.startswith('/api/leaderboard/submit'):
+        if self.path.startswith('/api/admin/update'):
+            # 管理端點：需要 X-Admin-Token，允許強制更新/覆寫分數（可降分）
+            admin_token = os.environ.get('ADMIN_TOKEN') or ''
+            client_token = self.headers.get('X-Admin-Token') or ''
+            if not admin_token or client_token != admin_token:
+                body = json.dumps({'ok': False, 'error': 'forbidden'}).encode('utf-8')
+                self.send_response(403)
+                self._set_cors()
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Content-Length', str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
+
+            length = int(self.headers.get('Content-Length') or 0)
+            raw = self.rfile.read(length)
+            try:
+                payload = json.loads(raw.decode('utf-8'))
+            except Exception:
+                payload = {}
+            user_id = str(payload.get('user_id') or '').strip()
+            name = str(payload.get('name') or '').strip()
+            try:
+                score = float(payload.get('score'))
+            except Exception:
+                score = 0.0
+            avatar = str(payload.get('avatar') or '').strip()
+            if not user_id:
+                body = json.dumps({'ok': False, 'error': 'invalid payload'}).encode('utf-8')
+                self.send_response(400)
+                self._set_cors()
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Content-Length', str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
+
+            data = load_data()
+            found = False
+            for item in data:
+                if item.get('user_id') == user_id:
+                    item['score'] = score
+                    if name:
+                        item['name'] = name
+                    if avatar:
+                        item['avatar'] = avatar
+                    item['updated_at'] = self.date_time_string()
+                    found = True
+                    break
+            if not found:
+                data.append({
+                    'user_id': user_id,
+                    'name': name,
+                    'score': score,
+                    'avatar': avatar,
+                    'updated_at': self.date_time_string()
+                })
+            save_data(data)
+
+            data_sorted = sorted(data, key=lambda x: (-x.get('score', 0), x.get('updated_at', '')), reverse=False)
+            rank = next((i+1 for i, it in enumerate(data_sorted) if it.get('user_id') == user_id), None)
+            body = json.dumps({'ok': True, 'rank': rank}, ensure_ascii=False).encode('utf-8')
+            self.send_response(200)
+            self._set_cors()
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        elif self.path.startswith('/api/leaderboard/submit'):
             length = int(self.headers.get('Content-Length') or 0)
             raw = self.rfile.read(length)
             try:
